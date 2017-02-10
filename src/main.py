@@ -31,11 +31,11 @@ simPoints = []
 count = 0 
 
 #the number of sample points we emulate at surrounding each non-rejected simulated point
-emulationPointsPerSamplePoint = 20 
+emulationPointsPerSamplePoint = 30
 
 #specify the number of waves (if we termination condition is given), simulations per wave, simulations at each point
 numberOfWaves = 10
-simulationsPerWave = 10
+simulationsPerWave = 6
 simulationsAtEachPt = 1
 
 #can be used alongside a termination condition to stop the process at a certain wave
