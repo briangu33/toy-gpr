@@ -11,7 +11,8 @@ We are concerned with the behavior of a *simulator*, a model for some real-world
 Unfortunately, simulators are often computationally expensive to run in practice; it is impossible to run the simulator exhaustively at every point in the hyperparameter space. To get around this, we use a computationally inexpensive *emulator* to emulate the simulator. Given past simulator outputs, the emulator uses [Gaussian Process Regression](http://www.gaussianprocess.org/gpml/) to predict simulator output across hyperparameter space, allowing us to efficiently rule out large regions of implausible hyperparameter combinations. We iterate by running the simulator at points in the remaining plausible space, running the emulator across the remaining plausible space given simulator runs, and then further shrinking the plausible space. 
 
 The algorithm can be summarized as follows:
-1. Initialize the plausible region of hyperparameter space (for example, a high-dimensional box).
+
+1. Initialize the plausible region of hyperparameter space (for example, a high-dimensional box). 
 2. Sample a small number of points from the plausible region. Run the simulator at these points and record the output. It is helpful to make sure that the sampled points are reasonably spread out; for this implementation, we use a simple sampling procedure called [Latin Hypercube Sampling](https://en.wikipedia.org/wiki/Latin_hypercube_sampling).
 3. Given the simulator outputs from the previous step, use the emulator to predict simulator output across all of the current plausible region. 
 4. Using some history matching criterion, declare some of the current plausible region implausible if predicted simulator outputs are inappropriate. The size of the plausible region should shrink in this step.
